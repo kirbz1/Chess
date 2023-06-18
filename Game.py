@@ -8,9 +8,13 @@ class Game:
         self.forward = []
         self.backward = []
         self.active_player = "W"
+        self.white_timer = 600
+        self.black_timer = 600
+        self.white = None
+        self.black = None
 
     def move(self):
-        
+        self.board.generate_valid_moves(self.active_player)
 
     def forward(self):
         if len(self.forward) == 0:
