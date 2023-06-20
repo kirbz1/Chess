@@ -1,30 +1,53 @@
 import pygame
-
+from Piece import Piece
 
 class Board:
     def __init__(self, width, height) -> None:
-        self.board = [
-            ["wR", "wKn", "wB", "wK", "wQ", "wB", "wKn", "wR"],
-            ["wp", "wp", "wp", "wp", "wp", "wp", "wp", "wp"],
-            ["-", "-", "-", "-", "-", "-", "-", "-"],
-            ["-", "-", "-", "-", "-", "-", "-", "-"],
-            ["-", "-", "-", "-", "-", "-", "-", "-"],
-            ["-", "-", "-", "-", "-", "-", "-", "-"],
-            ["bp", "bp", "bp", "bp", "bp", "bp", "bp", "bp"],
-            ["bR", "bKn", "bB", "bK", "bQ", "bB", "bKn", "bR"]
-        ]
-        
+        square_width = width/8
+        square_height = height/8
+
         from Square import Square
+        
         self.squares = []
+        
         for i in range(8):
             for j in range(8):
-                self.squares.append(Square(i, j, width/8, height/8))
+                if j < 2:
+                    colour = "b"
+                else:
+                    colour = "w"
 
-        self.taken = []
+                if  j == 1 or j == 6:
+                    piece = Piece("pawn", colour, square_width, square_height, (i,j))
+                    self.squares.append(Square(i, j, square_width, square_height, piece))
+                elif j > 1 and j < 6:
+                    self.squares.append(Square(i, j, square_width, square_height, None))
+                elif i == 0 or i == 7:
+                    piece = Piece("rook", colour, square_width, square_height, (i,j))
+                    self.squares.append(Square(i, j, square_width, square_height, piece))
+                elif i == 1 or i == 6:
+                    #black knight
+                    piece = Piece("knight", colour, square_width, square_height, (i,j))
+                    self.squares.append(Square(i, j, square_width, square_height, piece))
+                elif i == 2 or i == 5:
+                    #black bishop
+                    piece = Piece("bishop", colour, square_width, square_height, (i,j))
+                    self.squares.append(Square(i, j, square_width, square_height, piece))
+                elif i == 4:
+                    #black king
+                    piece = Piece("king", colour, square_width, square_height, (i,j))
+                    self.squares.append(Square(i, j, square_width, square_height, piece))
+                elif i == 3:
+                    #black queen
+                    piece = Piece("queen", colour, square_width, square_height, (i,j))
+                    self.squares.append(Square(i, j, square_width, square_height, piece))
+                
+
+                    
+
+
 
     def draw(self, display):
         for square in self.squares:
             square.draw(display)
 
-    def generate_valid_moves(self, player):
-        pass
