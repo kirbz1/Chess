@@ -24,4 +24,7 @@ class Square:
             centre.center = self.rect.center
             display.blit(self.occupying_piece.img, centre.topleft)
             #if selected, display potential moves
+            if self.selected:
+                pass
+
 

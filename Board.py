@@ -60,13 +60,20 @@ class Board:
         square_height = self.height/8
         for square in self.squares:
             if square.rank == int(x // square_width) and square.file == int(y // square_height):
-                if self.highlighted != None:
+                
+               
+                if self.highlighted != None and self.highlighted.rank == square.rank and self.highlighted.file == square.file:
+                    square.selected = False
+                    self.highlighted = None
+
+                elif self.highlighted != None:         
                     self.highlighted.selected = False
-                square.selected = True
-                self.highlighted = square
+                    square.selected = True
+                    self.highlighted = square
+
+                else:
+                    square.selected = True
+                    self.highlighted = square
                 
 
-    
-    def select_square(self, x, y):
-        self.get_square_from_xy(x, y).colour = (0, 80, 0)
-        
+

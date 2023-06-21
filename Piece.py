@@ -8,8 +8,12 @@ class Piece:
         self.img = pygame.transform.scale(self.img, (width, height))
         self.pos = pos
 
-    def generate_moves():
-
-
+    def generate_moves(self):
         moves = []
+
+        if self.type == "pawn":
+            
+            moves = [(0,1), (0,2), (-1,1), (1,1)]
         
+        return moves
+                    
