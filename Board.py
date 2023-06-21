@@ -3,8 +3,12 @@ from Piece import Piece
 
 class Board:
     def __init__(self, width, height) -> None:
+        self.width = width
+        self.height = height
+        
         square_width = width/8
         square_height = height/8
+        self.highlighted = None
 
         from Square import Square
         
@@ -51,3 +55,18 @@ class Board:
         for square in self.squares:
             square.draw(display)
 
+    def get_square_from_xy(self, x, y):
+        square_width = self.width/8
+        square_height = self.height/8
+        for square in self.squares:
+            if square.rank == int(x // square_width) and square.file == int(y // square_height):
+                if self.highlighted != None:
+                    self.highlighted.selected = False
+                square.selected = True
+                self.highlighted = square
+                
+
+    
+    def select_square(self, x, y):
+        self.get_square_from_xy(x, y).colour = (0, 80, 0)
+        

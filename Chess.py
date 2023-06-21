@@ -23,4 +23,10 @@ if __name__ == '__main__':
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                if event.button == 1:
+
+                    board.get_square_from_xy(mx, my)
+        #if board.checkmate():
+            #running = False
         draw(screen)
