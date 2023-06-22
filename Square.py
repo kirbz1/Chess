@@ -2,7 +2,7 @@ import pygame
 
 
 class Square:
-    def __init__(self, rank, file, width, height, occupying_piece) -> None:
+    def __init__(self, rank, file, width, height, occupying_piece, pos) -> None:
         self.rank = rank
         self.file = file
         self.width = width
@@ -12,6 +12,7 @@ class Square:
         self.highlight_colour = (0, 80, 0)
         self.occupying_piece = occupying_piece
         self.selected = False
+        self.pos = pos
 
     def draw(self, display):
         if self.selected == False:

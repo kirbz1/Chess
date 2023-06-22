@@ -22,29 +22,29 @@ class Board:
                     colour = "w"
 
                 if  j == 1 or j == 6:
-                    piece = Piece("pawn", colour, square_width, square_height, (i,j))
-                    self.squares.append(Square(i, j, square_width, square_height, piece))
+                    piece = Piece("pawn", colour, square_width, square_height, (i,j), self)
+                    self.squares.append(Square(i, j, square_width, square_height, piece, (i,j)))
                 elif j > 1 and j < 6:
-                    self.squares.append(Square(i, j, square_width, square_height, None))
+                    self.squares.append(Square(i, j, square_width, square_height, None, (i,j)))
                 elif i == 0 or i == 7:
-                    piece = Piece("rook", colour, square_width, square_height, (i,j))
-                    self.squares.append(Square(i, j, square_width, square_height, piece))
+                    piece = Piece("rook", colour, square_width, square_height, (i,j), self)
+                    self.squares.append(Square(i, j, square_width, square_height, piece, (i,j)))
                 elif i == 1 or i == 6:
                     #black knight
-                    piece = Piece("knight", colour, square_width, square_height, (i,j))
-                    self.squares.append(Square(i, j, square_width, square_height, piece))
+                    piece = Piece("knight", colour, square_width, square_height, (i,j), self)
+                    self.squares.append(Square(i, j, square_width, square_height, piece, (i,j)))
                 elif i == 2 or i == 5:
                     #black bishop
-                    piece = Piece("bishop", colour, square_width, square_height, (i,j))
-                    self.squares.append(Square(i, j, square_width, square_height, piece))
+                    piece = Piece("bishop", colour, square_width, square_height, (i,j), self)
+                    self.squares.append(Square(i, j, square_width, square_height, piece, (i,j)))
                 elif i == 4:
                     #black king
-                    piece = Piece("king", colour, square_width, square_height, (i,j))
-                    self.squares.append(Square(i, j, square_width, square_height, piece))
+                    piece = Piece("king", colour, square_width, square_height, (i,j), self)
+                    self.squares.append(Square(i, j, square_width, square_height, piece, (i,j)))
                 elif i == 3:
                     #black queen
-                    piece = Piece("queen", colour, square_width, square_height, (i,j))
-                    self.squares.append(Square(i, j, square_width, square_height, piece))
+                    piece = Piece("queen", colour, square_width, square_height, (i,j), self)
+                    self.squares.append(Square(i, j, square_width, square_height, piece, (i,j)))
                 
 
                     
@@ -55,9 +55,17 @@ class Board:
         for square in self.squares:
             square.draw(display)
 
+    def get_square(self, pos):
+        for square in self.squares:
+            if square.pos == pos:
+                return square
+        return None
+
     def get_square_from_xy(self, x, y):
         square_width = self.width/8
         square_height = self.height/8
+        for square in self.squares:
+            square.selected = False
         for square in self.squares:
             if square.rank == int(x // square_width) and square.file == int(y // square_height):
                 
@@ -70,10 +78,16 @@ class Board:
                     self.highlighted.selected = False
                     square.selected = True
                     self.highlighted = square
+                    if square.occupying_piece != None:
+                        self.show_moves(square.occupying_piece)
+                    
 
                 else:
                     square.selected = True
                     self.highlighted = square
+                    if square.occupying_piece != None:
+                        self.show_moves(square.occupying_piece)
                 
-
+    def show_moves(self, piece):
+        piece.generate_moves()
 
