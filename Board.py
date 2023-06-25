@@ -70,6 +70,8 @@ class Board:
                 
                 if square.open == True:
                     square.occupying_piece = self.highlighted.occupying_piece
+                    square.occupying_piece.pos = square.pos
+                    self.highlighted.occupying_piece = None
 
         for square in self.squares:
             square.selected = False
