@@ -1,11 +1,7 @@
-- ability to move a piece
-- ability to capture enemy pieces
-- ability for 2 player vs 1 player (simple ai, ability to flip board maybe)
-- different levels of difficulty for ai (different minimax depth search maybe)
-use pytorch etc some sort of NN to evaluate a position
+- implement more advanced movement (castling, backrank pawn, en passant, king can't move into check, pawns can only move 2 on first go)
+- implement a timer
+- maybe implement welcome screen with option for 2 player or 1 player (vs ai) (different time modes)
+- implement flip board mechanism for 2 player mode
+- implement ai, beginner > more advanced (minimax based on some evaluation function of positions)
 
-#pawn show moves
-        #implement backrank change piece
-        #implement en passant
-#king/rook castling
-#king moving into check
+use pytorch etc some sort of NN to evaluate a position?

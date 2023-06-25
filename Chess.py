@@ -18,6 +18,7 @@ def draw(display):
 
 if __name__ == '__main__':
     running = True
+    player = "w"
     while running:
         mx, my = pygame.mouse.get_pos()
         for event in pygame.event.get():
@@ -26,7 +27,13 @@ if __name__ == '__main__':
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 if event.button == 1:
 
-                    board.get_square_from_xy(mx, my)
+                    if board.left_click(mx, my, player) == 1:
+                        if player == "w":
+                            player = "b"
+                        else:
+                            player = "w"
+                    
+                    
         #if board.checkmate():
             #running = False
         draw(screen)

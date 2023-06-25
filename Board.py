@@ -28,9 +28,8 @@ class Board:
                 else:
                     colour = "w"
 
-                if j == 3 and i == 4:
-                    piece = King(colour, (i,j), self)
-                elif  j == 1 or j == 6:
+                
+                if  j == 1 or j == 6:
                     piece = Pawn(colour, (i,j), self)
                 elif j > 1 and j < 6:
                     piece = None
@@ -62,7 +61,7 @@ class Board:
                 return square
         return None
 
-    def get_square_from_xy(self, x, y):
+    def left_click(self, x, y, player):
         
         for square in self.squares:
             
@@ -72,7 +71,12 @@ class Board:
                     square.occupying_piece = self.highlighted.occupying_piece
                     square.occupying_piece.pos = square.pos
                     self.highlighted.occupying_piece = None
-
+                    for square in self.squares:
+                        square.selected = False
+                        square.open = False
+                    self.highlighted = None
+                    return 1
+                
         for square in self.squares:
             square.selected = False
             square.open = False
@@ -91,11 +95,11 @@ class Board:
                     self.highlighted.selected = False
                     square.selected = True
                     self.highlighted = square
-                    if square.occupying_piece != None:
+                    if square.occupying_piece != None and square.occupying_piece.colour == player:
                         square.occupying_piece.generate_moves()
 
                 else:
                     square.selected = True
                     self.highlighted = square
-                    if square.occupying_piece != None:
+                    if square.occupying_piece != None and square.occupying_piece.colour == player:
                         square.occupying_piece.generate_moves()

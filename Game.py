@@ -6,8 +6,8 @@ class Game:
     def __init__(self) -> None:
         self.board = Board()
         self.forward = []
-        self.backward = []
-        self.active_player = "W"
+        self.backward = [] #make deepcopy of board positions and add to forward/backward arrays
+        self.active_player = "w"
         self.white_timer = 600
         self.black_timer = 600
         self.white = None
