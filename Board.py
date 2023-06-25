@@ -28,7 +28,9 @@ class Board:
                 else:
                     colour = "w"
 
-                if  j == 1 or j == 6:
+                if j == 3 and i == 4:
+                    piece = King(colour, (i,j), self)
+                elif  j == 1 or j == 6:
                     piece = Pawn(colour, (i,j), self)
                 elif j > 1 and j < 6:
                     piece = None
@@ -61,14 +63,24 @@ class Board:
         return None
 
     def get_square_from_xy(self, x, y):
-        square_width = self.width/8
-        square_height = self.height/8
+        
+        for square in self.squares:
+            
+            if square.rank == int( x // (self.width / 8) ) and square.file == int( y // (self.height / 8) ):
+                
+                if square.open == True:
+                    square.occupying_piece = self.highlighted.occupying_piece
+
         for square in self.squares:
             square.selected = False
+            square.open = False
+        
         for square in self.squares:
-            if square.rank == int(x // square_width) and square.file == int(y // square_height):
+            
+            if square.rank == int( x // (self.width / 8) ) and square.file == int( y // (self.height / 8) ):
                 
-               
+                
+
                 if self.highlighted != None and self.highlighted.rank == square.rank and self.highlighted.file == square.file:
                     square.selected = False
                     self.highlighted = None
@@ -78,15 +90,10 @@ class Board:
                     square.selected = True
                     self.highlighted = square
                     if square.occupying_piece != None:
-                        self.show_moves(square.occupying_piece)
-                    
+                        square.occupying_piece.generate_moves()
 
                 else:
                     square.selected = True
                     self.highlighted = square
                     if square.occupying_piece != None:
-                        self.show_moves(square.occupying_piece)
-                
-    def show_moves(self, piece):
-        piece.generate_moves()
-
+                        square.occupying_piece.generate_moves()

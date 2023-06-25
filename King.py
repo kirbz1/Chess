@@ -8,37 +8,34 @@ class King(Piece):
         self.img = pygame.transform.scale(self.img, (board.width/8, board.height/8))
     
     def generate_moves(self):
-        if self.colour == "w":
-            sign = -1
-        else:
-            sign = 1
-        
-        #check square directly in front
-        new_pos = (self.pos[0], self.pos[1] + 1 * (sign))
+
+        def check_square():
+            if new_square != None:
+                if new_square.occupying_piece == None or new_square.occupying_piece.colour != self.colour:
+                    new_square.selected = True
+                    new_square.open = True
+
+        new_pos = (self.pos[0], self.pos[1] + 1)
         new_square = self.board.get_square(new_pos)
-        if new_square != None and new_square.occupying_piece == None:
-            new_square.selected = True
-            #check square 2x ahead
-            new_pos = (self.pos[0], self.pos[1] + 2 * (sign))
-            new_square = self.board.get_square(new_pos)
-            if new_square != None and new_square.occupying_piece == None:
-                new_square.selected = True
-        #check if able to take an enemy piece
-        new_pos = (self.pos[0] - 1, self.pos[1] + 1 * (sign))
+        check_square()
+        new_pos = (self.pos[0], self.pos[1] - 1)
         new_square = self.board.get_square(new_pos)
-        if new_square != None and new_square.occupying_piece != None:
-            if sign == -1 and new_square.occupying_piece.colour == "b":
-                new_square.selected = True
-            elif sign == 1 and new_square.occupying_piece.colour == "w":
-                new_square.selected = True
-        #check if able to take an enemy piece
-        new_pos = (self.pos[0] + 1, self.pos[1] + 1 * (sign))
+        check_square()
+        new_pos = (self.pos[0] + 1, self.pos[1])
         new_square = self.board.get_square(new_pos)
-        if new_square != None and new_square.occupying_piece != None:
-            if sign == -1 and new_square.occupying_piece.colour == "b":
-                new_square.selected = True
-            elif sign == 1 and new_square.occupying_piece.colour == "w":
-                new_square.selected = True
-        
-        #implement backrank change piece
-        #implement en passant
+        check_square()
+        new_pos = (self.pos[0] - 1, self.pos[1])
+        new_square = self.board.get_square(new_pos)
+        check_square()
+        new_pos = (self.pos[0] + 1, self.pos[1] + 1)
+        new_square = self.board.get_square(new_pos)
+        check_square()
+        new_pos = (self.pos[0] - 1, self.pos[1] + 1)
+        new_square = self.board.get_square(new_pos)
+        check_square()
+        new_pos = (self.pos[0] + 1, self.pos[1] - 1)
+        new_square = self.board.get_square(new_pos)
+        check_square()
+        new_pos = (self.pos[0] - 1, self.pos[1] - 1)
+        new_square = self.board.get_square(new_pos)
+        check_square()

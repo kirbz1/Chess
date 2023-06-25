@@ -9,9 +9,10 @@ class Square:
         self.height = height
         self.rect = pygame.Rect(self.rank * self.width, self.file * self.height, self.width, self.height)
         self.colour = (220, 208, 194) if (rank + file) % 2 == 0 else (53, 53, 53)
-        self.highlight_colour = (0, 80, 0)
+        self.highlight_colour = (220, 248, 194) if (rank + file) % 2 == 0 else (53, 93, 53)
         self.occupying_piece = occupying_piece
         self.selected = False
+        self.open = False
         self.pos = pos
 
     def draw(self, display):

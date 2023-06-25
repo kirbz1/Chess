@@ -14,11 +14,14 @@ class Rook(Piece):
             new_square = self.board.get_square(new_pos)
             if new_square != None and new_square.occupying_piece == None:
                 new_square.selected = True
+                new_square.open = True
             elif new_square != None and new_square.occupying_piece != None:
                 if self.colour == "w" and new_square.occupying_piece.colour == "b":
                     new_square.selected = True
+                    new_square.open = True
                 elif self.colour == "b" and new_square.occupying_piece.colour == "w":
                     new_square.selected = True
+                    new_square.open = True
                 break
             else:  
                 break
@@ -28,11 +31,14 @@ class Rook(Piece):
             new_square = self.board.get_square(new_pos)
             if new_square != None and new_square.occupying_piece == None:
                 new_square.selected = True
+                new_square.open = True
             elif new_square != None and new_square.occupying_piece != None:
                 if self.colour == "w" and new_square.occupying_piece.colour == "b":
                     new_square.selected = True
+                    new_square.open = True
                 elif self.colour == "b" and new_square.occupying_piece.colour == "w":
                     new_square.selected = True
+                    new_square.open = True
                 break
             else:  
                 break
@@ -42,11 +48,14 @@ class Rook(Piece):
             new_square = self.board.get_square(new_pos)
             if new_square != None and new_square.occupying_piece == None:
                 new_square.selected = True
+                new_square.open = True
             elif new_square != None and new_square.occupying_piece != None:
                 if self.colour == "w" and new_square.occupying_piece.colour == "b":
                     new_square.selected = True
+                    new_square.open = True
                 elif self.colour == "b" and new_square.occupying_piece.colour == "w":
                     new_square.selected = True
+                    new_square.open = True
                 break
             else:  
                 break
@@ -56,11 +65,14 @@ class Rook(Piece):
             new_square = self.board.get_square(new_pos)
             if new_square != None and new_square.occupying_piece == None:
                 new_square.selected = True
+                new_square.open = True
             elif new_square != None and new_square.occupying_piece != None:
                 if self.colour == "w" and new_square.occupying_piece.colour == "b":
                     new_square.selected = True
+                    new_square.open = True
                 elif self.colour == "b" and new_square.occupying_piece.colour == "w":
                     new_square.selected = True
+                    new_square.open = True
                 break
             else:  
                 break
