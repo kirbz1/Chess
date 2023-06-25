@@ -1,5 +1,11 @@
 import pygame
 from Piece import Piece
+from Pawn import Pawn
+from Rook import Rook
+from Knight import Knight
+from Queen import Queen
+from King import King
+from Bishop import Bishop
 
 class Board:
     def __init__(self, width, height) -> None:
@@ -16,35 +22,28 @@ class Board:
         
         for i in range(8):
             for j in range(8):
+                
                 if j < 2:
                     colour = "b"
                 else:
                     colour = "w"
 
                 if  j == 1 or j == 6:
-                    piece = Piece("pawn", colour, square_width, square_height, (i,j), self)
-                    self.squares.append(Square(i, j, square_width, square_height, piece, (i,j)))
+                    piece = Pawn(colour, (i,j), self)
                 elif j > 1 and j < 6:
-                    self.squares.append(Square(i, j, square_width, square_height, None, (i,j)))
+                    piece = None
                 elif i == 0 or i == 7:
-                    piece = Piece("rook", colour, square_width, square_height, (i,j), self)
-                    self.squares.append(Square(i, j, square_width, square_height, piece, (i,j)))
+                    piece = Rook(colour, (i,j), self)
                 elif i == 1 or i == 6:
-                    #black knight
-                    piece = Piece("knight", colour, square_width, square_height, (i,j), self)
-                    self.squares.append(Square(i, j, square_width, square_height, piece, (i,j)))
+                    piece = Knight(colour, (i,j), self)
                 elif i == 2 or i == 5:
-                    #black bishop
-                    piece = Piece("bishop", colour, square_width, square_height, (i,j), self)
-                    self.squares.append(Square(i, j, square_width, square_height, piece, (i,j)))
+                    piece = Bishop(colour, (i,j), self)
                 elif i == 4:
-                    #black king
-                    piece = Piece("king", colour, square_width, square_height, (i,j), self)
-                    self.squares.append(Square(i, j, square_width, square_height, piece, (i,j)))
+                    piece = King(colour, (i,j), self)
                 elif i == 3:
-                    #black queen
-                    piece = Piece("queen", colour, square_width, square_height, (i,j), self)
-                    self.squares.append(Square(i, j, square_width, square_height, piece, (i,j)))
+                    piece = Queen(colour, (i,j), self)
+                
+                self.squares.append(Square(i, j, square_width, square_height, piece, (i,j)))
                 
 
                     

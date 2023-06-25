@@ -1,0 +1,10 @@
+- generate and display potential moves for a piece upon selecting a square (non pawns)
+- ability to move a piece
+- ability to capture enemy pieces
+- ability for 2 player vs 1 player (simple ai, ability to flip board maybe)
+- different levels of difficulty for ai (different minimax depth search maybe)
+use pytorch etc some sort of NN to evaluate a position
+
+#pawn show moves
+        #implement backrank change piece
+        #implement en passant
